@@ -1,6 +1,7 @@
 import { AccountBalanceWalletRounded, Chat, Favorite, HomeRounded, Settings, SummarizeRounded } from "@mui/icons-material";
 import { useEffect } from "react";
 import "./App.css";
+import BannerName from "./components/BannerName";
 import Header from "./components/Header";
 import MenuContainer from "./components/MenuContainer";
 
@@ -19,13 +20,21 @@ useEffect(()=>{
     <div className="App">
       <Header />
       <main>
-        <div className="mainContainer"></div>
+        <div className="mainContainer">
+          {/* banner */}
+          <div className="banner">
+          <BannerName name={'Prashun'} discount={"20"} link={"#"} />
+        <img src={require("./assets/images/deliveryMan.png")} alt="" className="deliveryPic" />
+          </div>
+         
+        </div>
         <div className="rightMenu"></div>
       </main>
+      {/* bottom menu */}
       <div className="bottomMenu">
         <ul id="menu">
           {/* prettier-ignore */}
-          <MenuContainer link={"#"} icon={<HomeRounded />} />
+          <MenuContainer link={"#"} icon={<HomeRounded />} isHome/>
            {/* prettier-ignore */}
            <MenuContainer link={"#"} icon={<Chat />} />
             {/* prettier-ignore */}
