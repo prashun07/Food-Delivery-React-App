@@ -93,6 +93,11 @@ const setData=(itemId)=>{
             <div className="debitCard">
               <DebitCard />
             </div>
+            <div className="cartCheckOutContainer">
+              <div className="cartContainer">
+                <SubMenuContainer />
+              </div>
+            </div>
           </div>
         </div>
       </main>
