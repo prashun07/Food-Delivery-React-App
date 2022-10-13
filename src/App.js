@@ -16,6 +16,7 @@ import SubMenuContainer from "./components/SubMenuContainer";
 import { MenuItems, Items } from "./components/Data";
 import ItemCard from "./components/ItemCard";
 import DebitCard from "./components/DebitCard";
+import CardItem from "./components/CardItem";
 function App() {
   // main dish state
   const [isMainData, setisMainData] = useState(
@@ -39,10 +40,10 @@ function App() {
 
     menuCard.forEach((n) => n.addEventListener("click", setMenuCardActive));
   }, []);
-//set main dish item on filter 
-const setData=(itemId)=>{
-  setisMainData(Items.filter((element)=>element.itemId===itemId))
-}
+  //set main dish item on filter
+  const setData = (itemId) => {
+    setisMainData(Items.filter((element) => element.itemId === itemId));
+  };
   return (
     <div className="App">
       <Header />
@@ -65,7 +66,7 @@ const setData=(itemId)=>{
             <div className="rowContainer">
               {MenuItems &&
                 MenuItems.map((data) => (
-                  <div key={data.id} onClick={()=>setData(data.itemId)}>
+                  <div key={data.id} onClick={() => setData(data.itemId)}>
                     <MenuCard
                       imgSrc={data.imgSrc}
                       name={data.name}
@@ -76,15 +77,16 @@ const setData=(itemId)=>{
             </div>
             <div className="dishItemContainer">
               {isMainData &&
-               isMainData.map((data)=>(
-                <ItemCard key={data.id}
-                itemId={data.itemId}
-                imgSrc={data.imgSrc}
-                name={data.name}
-                rating={data.ratings}
-                price={data.price}
-              />
-               ))}
+                isMainData.map((data) => (
+                  <ItemCard
+                    key={data.id}
+                    itemId={data.itemId}
+                    imgSrc={data.imgSrc}
+                    name={data.name}
+                    rating={data.ratings}
+                    price={data.price}
+                  />
+                ))}
             </div>
           </div>
         </div>
@@ -94,9 +96,22 @@ const setData=(itemId)=>{
               <DebitCard />
             </div>
             <div className="cartCheckOutContainer">
+            <SubMenuContainer name={"Carts Items"} />
               <div className="cartContainer">
-                <SubMenuContainer />
+                <div className="cartItems">
+                  <CardItem
+                    name={"Burger"}
+                    imgSrc= {"https://firebasestorage.googleapis.com/v0/b/food-delivery-37c59.appspot.com/o/Images%2Fburger1.png?alt=media&token=319dfbe9-462b-46ea-8f38-6ca7a20319e0"}
+                    qty={'4'}
+                    price={"7.95"}
+                 />
+                </div>
               </div>
+              <div className="totalSection">
+                <h3>Total</h3>
+                <p><span>$45.0</span></p>
+              </div>
+              <button className="checkOut">Checkout</button>
             </div>
           </div>
         </div>
