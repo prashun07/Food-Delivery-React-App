@@ -1,5 +1,4 @@
 import React from "react";
-import "./Header.css";
 import {} from "@mui/material";
 import {
   BarChart,
@@ -9,8 +8,8 @@ import {
 import { useEffect } from "react";
 function Header() {
   useEffect(() => {
-    const toggleMenu = document.querySelector(".toggleMenu");
-    toggleMenu.addEventListener("click", () => {
+    const toggleIcon = document.querySelector(".toggleMenu");
+    toggleIcon.addEventListener('click' , () => {
       document.querySelector(".rightMenu").classList.toggle("active");
     });
   }, []);

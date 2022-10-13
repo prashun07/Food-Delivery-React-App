@@ -17,11 +17,16 @@ import { MenuItems, Items } from "./components/Data";
 import ItemCard from "./components/ItemCard";
 import DebitCard from "./components/DebitCard";
 import CardItem from "./components/CardItem";
+import { useStateValue } from "./components/StateProvider";
 function App() {
   // main dish state
   const [isMainData, setisMainData] = useState(
     Items.filter((element) => element.itemId === "buger01")
   );
+ const [{ cart } ,dispatch]=useStateValue();
+
+
+
   useEffect(() => {
     const menuLi = document.querySelectorAll("#menu li");
     function setMenuActive() {
@@ -95,16 +100,24 @@ function App() {
             <div className="debitCard">
               <DebitCard />
             </div>
+            { !cart ? (
+              <div> </div>
+            ):
+              (
             <div className="cartCheckOutContainer">
             <SubMenuContainer name={"Carts Items"} />
               <div className="cartContainer">
                 <div className="cartItems">
-                  <CardItem
-                    name={"Burger"}
-                    imgSrc= {"https://firebasestorage.googleapis.com/v0/b/food-delivery-37c59.appspot.com/o/Images%2Fburger1.png?alt=media&token=319dfbe9-462b-46ea-8f38-6ca7a20319e0"}
-                    qty={'4'}
-                    price={"7.95"}
+                  { cart &&
+                   cart.map((data)=>(
+                    <CardItem key={data.id}
+                    itemId={data.id}
+                    name={data.name}
+                    imgSrc={data.imgSrc}
+                    price={data.price}
                  />
+                   )) }
+                 
                 </div>
               </div>
               <div className="totalSection">
@@ -113,6 +126,7 @@ function App() {
               </div>
               <button className="checkOut">Checkout</button>
             </div>
+              )} 
           </div>
         </div>
       </main>

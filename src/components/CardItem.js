@@ -1,7 +1,7 @@
 import { AddRounded, RemoveRounded } from "@mui/icons-material";
 import React, { useState } from "react";
 
-function CardItem({name, imgSrc, price }) {
+function CardItem({name, imgSrc, price ,itemId}) {
   const [qty, setQty] = useState(1)
   return (
     <div className="cardItem">
