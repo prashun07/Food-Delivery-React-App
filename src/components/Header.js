@@ -7,8 +7,10 @@ function Header() {
   //Whenever you click on the top right toggleMenu the Debit card page will appear
   useEffect(() => {
     const toggleIcon = document.querySelector(".toggleMenu");
-    toggleIcon.addEventListener('click', () => {
-      document.querySelector(".rightMenu").classList.toggle("active");
+    toggleIcon.addEventListener("click", () => {
+      // const a=
+      return document.querySelector(".rightMenu").classList.toggle("active");
+      // console.log(a);
     });
   }, []);
   return (
