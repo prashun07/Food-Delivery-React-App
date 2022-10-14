@@ -1,15 +1,13 @@
 import React from "react";
-import {} from "@mui/material";
-import {
-  BarChart,
-  SearchRounded,
-  ShoppingCartRounded,
-} from "@mui/icons-material";
+import { } from "@mui/material";
+import { BarChart, SearchRounded, ShoppingCartRounded } from "@mui/icons-material";
 import { useEffect } from "react";
+// For header of the Web page 
 function Header() {
+  //Whenever you click on the top right toggleMenu the Debit card page will appear
   useEffect(() => {
     const toggleIcon = document.querySelector(".toggleMenu");
-    toggleIcon.addEventListener('click' , () => {
+    toggleIcon.addEventListener('click', () => {
       document.querySelector(".rightMenu").classList.toggle("active");
     });
   }, []);

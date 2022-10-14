@@ -59,6 +59,7 @@ function ItemCard({ itemId, imgSrc, name, rating, price }) {
               setCart(Items.find((n) => n.id === itemId));
             }}
           >
+            
             <AddRounded />
           </i>
         </div>
