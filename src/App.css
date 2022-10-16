@@ -891,12 +891,13 @@ main {
   .profileContainer .userName {
     display: block;
   }
-
-  /* .rightMenu {
-    left: 21%;
-    width: 40%;
-  } */
-
+  header .inputBox{
+    width: 250px;
+  }
+  .isFavourite{
+    top: 100px;
+    right:11px;
+  }
   .mainContainer {
     width: calc(100% - 350px);
   }

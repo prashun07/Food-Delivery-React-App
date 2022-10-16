@@ -23,7 +23,8 @@ function App() {
   const [isMainData, setisMainData] = useState(
     Items.filter((element) => element.itemId === "buger01")
   );
-  const [{ cart }, dispatch] = useStateValue();
+  const [{ cart ,total }, dispatch] = useStateValue();
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     const menuLi = document.querySelectorAll("#menu li");
@@ -42,7 +43,7 @@ function App() {
     }
 
     menuCard.forEach((n) => n.addEventListener("click", setMenuCardActive));
-  }, [isMainData, cart]);
+  }, [isMainData, cart,total,totalPrice]);
   //set main dish item on filter
   const setData = (itemId) => {
     setisMainData(Items.filter((element) => element.itemId === itemId));
@@ -127,7 +128,7 @@ function App() {
               <div className="totalSection">
                 <h3>Total</h3>
                 <p>
-                  <span>$45.0</span>
+                  <span>$</span>{ total }
                 </p>
               </div>
               <button className="checkOut">Checkout</button>

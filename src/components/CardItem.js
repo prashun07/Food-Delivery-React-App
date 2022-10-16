@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import { actionType } from "./reducer";
 import { useStateValue } from "./StateProvider";
 let cardItems = [];
-
+let totalAmount = 0;
 function CardItem({ name, imgSrc, price, itemId }) {
   const [qty, setQty] = useState(1);
-  const [{ cart }, dispatch] = useStateValue();
+  const [{ cart, total }, dispatch] = useStateValue();
   const [itemPrice, setitemPrice] = useState(parseInt(qty) * parseFloat(price));
 
   useEffect(() => {
@@ -15,22 +15,30 @@ function CardItem({ name, imgSrc, price, itemId }) {
   }, [qty]);
 
   const updateQuantity = (action, id) => {
+    totalAmount=parseInt(total);
     if (action === "add") {
       setQty(qty + 1);
+    totalAmount=(parseInt(qty+1) * parseFloat(price));
     } else {
       if (qty === 1) {
         cardItems.pop(id);
+        totalAmount=0;
         dispatch({
           type: actionType.SET_CART,
           cart: cardItems,
+        
         });
-      }
-      setQty(qty - 1);
-      if(qty<0){
-      cardItems.pop(id);
+      } else {
+        setQty(qty - 1);
+        totalAmount=(parseInt(qty-1) * parseFloat(price));
       }
     }
+ dispatch({
+    type: actionType.SET_TOTAL,
+    total: totalAmount,
+ })
   };
+
   return (
     <div className="cardItem">
       <div className="imgBox">

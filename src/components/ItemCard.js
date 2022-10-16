@@ -4,32 +4,36 @@ import { Items } from "./Data";
 import { actionType } from "./reducer";
 import { useStateValue } from "./StateProvider";
 let cartData = [];
-
-function ItemCard({ itemId, imgSrc, name, price,rating }) {
+let Amount=0;
+function ItemCard({ itemId, imgSrc, name, price, rating }) {
   const [isFavourite, setisFavourite] = useState(false);
   const [currentValue, setcurrentValue] = useState(Math.floor(rating));
-  const [{}, dispatch] = useStateValue();
+  const [{ total }, dispatch] = useStateValue();
   const [isCart, setCart] = useState(null);
-
   useEffect(() => {
     if (isCart) {
       cartData.push(isCart);
-      // console.log(cartData);
       dispatch({
-        type: actionType.SET_CART,
-        cart: cartData,
+          type: actionType.SET_CART,
+          cart: cartData,
       });
     }
   }, [isCart]);
 
-  const handleClick=(value)=>{
+  const handleClick = (value) => {
     setcurrentValue(value);
   };
-  function setCartOnClick(){
-   setCart(Items.find((n) => n.id === itemId));
-  //  console.log(isCart);
-   
-  };
+  function setCartOnClick() {
+    let checkId = Items.find((n) => n.id === itemId);
+    setCart(checkId);
+    Amount=checkId?price:0;
+    if(Amount){
+      dispatch({
+        type:actionType.SET_TOTAL,
+        total:Amount,
+      })
+    }
+  }
   return (
     <div className="itemCard" id={itemId}>
       <div
@@ -61,7 +65,7 @@ function ItemCard({ itemId, imgSrc, name, price,rating }) {
           <i
             className="addToCart"
             onClick={() => {
-             setCartOnClick()
+              setCartOnClick();
             }}
           >
             <AddRounded />

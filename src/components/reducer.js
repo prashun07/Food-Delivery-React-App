@@ -28,5 +28,5 @@ export const initialState = {
         return state;
     }
   };
-  
+
   export default reducer;
