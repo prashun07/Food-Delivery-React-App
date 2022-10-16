@@ -26,6 +26,9 @@ function CardItem({ name, imgSrc, price, itemId }) {
         });
       }
       setQty(qty - 1);
+      if(qty<0){
+      cardItems.pop(id);
+      }
     }
   };
   return (
