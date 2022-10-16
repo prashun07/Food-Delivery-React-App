@@ -463,6 +463,7 @@ main {
   }
   /*Item cart*/
   .dishItemContainer {
+    margin-bottom: 10%;
     display: flex;
     justify-content: space-around;
     align-items: center;
