@@ -932,13 +932,26 @@ main {
   }
   .rightMenu {
     position: fixed;
+    height: calc(100% - 58px);
     z-index: 1;
     transform: translateX(0%);
-    top: unset;
+    top: 45px;
     padding: 20px 15px;
   }
   .itemCard {
     width: 180px;
     height: 200px;
+  }
+  .cartCheckoutContainer{
+    width: 100%;
+    min-width: 200px;
+  }
+  .cartContainer {
+    min-height: 158px;
+    max-height: 189px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%;
+    margin-top: 10px;
   }
 }
