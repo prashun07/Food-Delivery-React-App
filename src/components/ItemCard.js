@@ -5,7 +5,7 @@ import { actionType } from "./reducer";
 import { useStateValue } from "./StateProvider";
 let cartData = [];
 
-function ItemCard({ itemId, imgSrc, name, rating, price }) {
+function ItemCard({ itemId, imgSrc, name, price,rating }) {
   const [isFavourite, setisFavourite] = useState(false);
   const [currentValue, setcurrentValue] = useState(Math.floor(rating));
   const [{}, dispatch] = useStateValue();
@@ -14,7 +14,7 @@ function ItemCard({ itemId, imgSrc, name, rating, price }) {
   useEffect(() => {
     if (isCart) {
       cartData.push(isCart);
-      // console.log("hi");
+      // console.log(cartData);
       dispatch({
         type: actionType.SET_CART,
         cart: cartData,
@@ -22,9 +22,14 @@ function ItemCard({ itemId, imgSrc, name, rating, price }) {
     }
   }, [isCart]);
 
-  function handleClick(value) {
+  const handleClick=(value)=>{
     setcurrentValue(value);
-  }
+  };
+  function setCartOnClick(){
+   setCart(Items.find((n) => n.id === itemId));
+  //  console.log(isCart);
+   
+  };
   return (
     <div className="itemCard" id={itemId}>
       <div
@@ -49,17 +54,16 @@ function ItemCard({ itemId, imgSrc, name, rating, price }) {
                 <StarRounded />
               </i>
             ))}
-            <div className="price">
+            <h3 className="price">
               <span>${price}</span>
-            </div>
+            </h3>
           </div>
           <i
             className="addToCart"
             onClick={() => {
-              setCart(Items.find((n) => n.id === itemId));
+             setCartOnClick()
             }}
           >
-            
             <AddRounded />
           </i>
         </div>
